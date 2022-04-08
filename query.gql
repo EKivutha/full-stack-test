@@ -1,0 +1,13 @@
+query PagesAndTokens{
+  book {
+    author
+    title
+    pages {
+      content
+      tokens{
+        position
+        value
+      }
+    }
+  }
+}
