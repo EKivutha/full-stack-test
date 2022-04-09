@@ -4,7 +4,6 @@ import './App.css';
 
 import Books from './books/reading';
 
-
 const App = () => (
     <div>
       <Books/>
