@@ -5,6 +5,7 @@ query PagesAndTokens{
       author
       title
       pages {
+        pageIndex
         content
         tokens{
           position
