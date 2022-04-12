@@ -9,15 +9,33 @@ import { useQuery } from '@apollo/client';
 
 function Books() {
   const { loading, error, data } = useQuery(GET_BOOKS);
+  // let s = window.getSelection();
+  // let oRange = s.getRangeAt();
 
   if (loading) return 'Loading...';
   else if (error) return `Error! ${error.message}`;
-
+ 
   else if (data) {
     console.log(data)
+    // console.log(oRange);
     return (
-      console.log(data.book.pages)
-    )
+      <div>
+        <h1>{data.book.title}</h1>
+        <h2>{data.book.author}</h2>
+
+        {data && data.book.pages
+          .filter((page, id) => id === 0)
+          .map((page, id) => (
+
+            <div>
+
+              <p>
+                {page.content}
+              </p>
+            </div>
+          ))}
+
+      </div>)
   }
 }
 
