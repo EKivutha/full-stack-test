@@ -1,7 +1,11 @@
-import React from 'react';
+import React,{useEffect} from 'react';
 import GET_BOOKS from '../Queries/bookQueris'
 
 import { useQuery } from '@apollo/client';
+import {
+  useParams
+} from "react-router-dom";
+
 
 
 //display indivudual pages as per id
@@ -9,6 +13,12 @@ import { useQuery } from '@apollo/client';
 
 function Books() {
   const { loading, error, data } = useQuery(GET_BOOKS);
+  
+  let { idr } = useParams();
+  let num = parseInt(idr);
+  // const handleProceed = (e) => {
+  //   history.push(generatePath("/products/:id", { id }));
+  // };
   // let s = window.getSelection();
   // let oRange = s.getRangeAt();
 
@@ -17,6 +27,7 @@ function Books() {
  
   else if (data) {
     console.log(data)
+    console.log("id",idr)
     // console.log(oRange);
     return (
       <div>
@@ -24,7 +35,7 @@ function Books() {
         <h2>{data.book.author}</h2>
 
         {data && data.book.pages
-          .filter((page, id) => id === 0)
+          .filter((page, id) => id === num)
           .map((page, id) => (
 
             <div>
